@@ -1,0 +1,31 @@
+<p>
+        Выберите язык:
+        <button ng-repeat="c in tags.countries" class="ui teal basic button" ng-click="tags.getAllTags.setCountries(c.id)">
+                {{::c.name}}
+        </button>
+</p>
+
+<p>
+        Выберите тип редакции:
+        <button ng-repeat="c in tags.postTypes" class="ui teal basic button" ng-click="tags.getAllTags.setPostTypes(c.id, tags)">
+                {{::c.name}}
+        </button>
+</p>
+
+<table class="ui collapsing celled table">
+        <tbody>
+                <tr ng-repeat="v in tags.verticalTableData">
+                        <td>{{v.name}}</td>
+                        <td>
+                                <buttom ng-repeat="t in v.tags" class="ui button">
+                                        {{::t.name}}
+                                        <i class="remove icon" ng-click="tags.deleteTag(v.id,t.id)"></i>
+                                </buttom>
+                                <div class="ui input">
+                                        <input type="text" ng-model="tags.tagsNames['' + v.id]['' + v.id]">
+                                        <i class="plus square outline icon" ng-click="tags.addTag(tags.tagsNames['' + v.id])"></i>
+                                </div>
+                        </td>
+                </tr>
+        </tbody>
+</table>
