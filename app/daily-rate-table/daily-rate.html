@@ -1,0 +1,44 @@
+<div ng-repeat="tData in rate.dailyRatesTableData">
+      {{::tData.content}} {{::tData.leng}}
+   <button class="" ng-click="rate.calculate($index)">Рассчитать </button>
+
+      <table border="1px solid">
+
+        <tr>
+          <td>Авторы</td>
+          <td>Нагрузка</td>
+          <td ng-repeat="vert in tData.verticals">
+            {{::vert.name}}
+          </td>
+          <td>Итого: </td>
+        </tr>
+
+        <tr ng-repeat="user in tData.users">
+          <td>
+            {{::user.last_name}} {{::user.first_name}}
+          </td>
+          <td>
+            <select ng-click="rate.reduce($index)">
+
+            </select>
+          </td>
+          <td ng-repeat="(key, value) in user.verticalPerDay">
+            <p ng-hide="rate.hide">{{value}}</p>
+          </td>
+          <td>
+            {{rate.totalVerticals(user)}}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Итого:</td>
+          <td>{{::tData.totalUsers}} </td>
+          <td ng-repeat="vertical in tData.verticals">
+            {{::vertical.value}}
+          </td>
+          <td>{{::tData.totalVerticals}}</td>
+        </tr>
+
+      </table>
+
+  </div>
